@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Weather";
+}
+
+@*This is the html you see on the main page*@
+<h1>Search by your zip code or use your current location!</h1>
+
+<div class="info-input">
+    <p><strong>Zip Code:</strong></p>
+    <p><input id="txtCity" type="text"  /></p>
+    <button id="btnSubmit">Get Weather</button>
+</div>
+
+<div class="weather-information">
+    <div class="weather-container">
+        <h2>Weather Forecast</h2>
+        <div class="location">
+            <h3>
+                <span id="lblCity"></span>, <span class="state"></span>
+                <label id="lblTemp"></label><br />
+            </h3>
+            <h4>@DateTime.Now</h4>
+        </div>
+        <table>
+            <tr>
+                <td>Weather Symbol Icon <img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
+            </tr>
+            <tr>
+                <td>
+
+                    &nbsp;&nbsp;,
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Description:</strong>
+                    <label id="lblDescription"></label><br />
+                    <strong>Humidity:</strong>
+                    <label id="lblHumidity"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Temperature (Feels Like)<label id="lblTempFeelsLike"></label><br />
+                    Temperature <label id="lblTemp"></label><br />
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>
+
+
+<script>
+    //This script takes the information from the weather and sets it to the below "selectors" 
+    //what this does is takes the elements id and sends inormation to it. I can explain it better if need be.
+
+    $("#btnSubmit").click(function () {
+        getWeather()
+    });
+
+    function getWeather() {
+        var cityname = $("#txtCity").val();
+        if (cityname.length > 0) {
+            
+            $.ajax({
+                url: "WeatherDetail?City=" + cityname,
+                type: "POST",
+                success: function (rsltval) {
+                    var data = JSON.parse(rsltval);
+                    console.log(data);
+                    document.querySelector('.weather-container').style.display = 'block';
+                    $("#lblCity").html(data.City);
+                    $("#lblCountry").text(data.Country);
+                    $("#lblDescription").text(data.Description);
+                    $("#lblHumidity").text(data.Humidity);
+                    $("#lblTempFeelsLike").text(data.TempFeelsLike);
+                    //Math.round($("#lblTemp").text(data.Temp));
+                    $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                },
+                error: function () {
+
+                }
+            });
+        }
+        else {
+            alert("City Not Found");
+        }
+    }
+</script>
+
+@*The below scripts are used to get the geolocation from a free api*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function (location) {
+            $('#country').html(location.country_name);
+            $('#state').html(location.state);
+            $('.state').html(location.state);
+            $('#city').html(location.city);
+            $('#txtCity').val(location.postal);
+            $('#latitude').html(location.latitude);
+            $('#longitude').html(location.longitude);
+            $('#ip').html(location.IPv4);
+            $('#zip').html(location.postal);
+
+        }
+    });
+    
+</script>
+
+
+  

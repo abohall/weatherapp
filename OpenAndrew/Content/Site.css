@@ -1,0 +1,79 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: #0cbaba;
+    background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+    color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+    color: #fefefe;
+}
+
+.info-input {
+    display: block;
+    margin: 0px auto;
+    max-width: 500px;
+    width: 100%;
+}
+
+    .info-input p {
+        display: inline-block;
+        float: left;
+        margin: 0px 30px
+    }
+
+.weather-information {
+    width: 500px;
+    margin: 0px auto;
+    /* border: 1px solid #cccccc; */
+}
+
+.weather-container {
+    display: none;
+}
+
+button {
+    background-color: #0cbaba;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 0px 26px;
+    cursor: pointer;
+    clear: both;
+}
+
+input {
+    display: block;
+    width: 100px;
+    padding: 20px 0 15px 12px;
+    font-weight: 400;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    outline: none;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    text-indent: 10px;
+    transition: all .3s ease-in-out;
+    position: relative;
+    font-size: 13px;
+}

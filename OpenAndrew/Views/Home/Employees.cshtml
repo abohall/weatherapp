@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WeatherForecast.Models.EmployeeViewModel>
+<html>
+
+    <body>
+        <h2>Employees</h2>
+
+
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        Home
+                    </a>
+                    <a class="navbar-item">
+                        Appointments
+                    </a>
+                    <a class="navbar-item">
+                        Clients
+                    </a>
+                    <a class="navbar-item">
+                        Employees
+                    </a>
+                </div>
+                <div class="navbar-end">
+                    <a class="navbar-item">Sign Out</a>
+                </div>
+            </div>
+        </nav>
+        <section class="section">
+            <div class="container">
+                <h1 class="title">Employees</h1>
+                <article id="employees">
+                    <!-- Render Content Here -->
+                    <table class="table">
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name.first)
+                                    @Html.DisplayFor(modelItem => item.name.last)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.jobTitle)
+                                </td>
+                                <td>
+                                    <img src="@item.photoURL" />
+
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </article>
+            </div>
+        </section>
+    </body>
+
+</html>
